@@ -20,8 +20,8 @@
 
 ## Features
 
-- **Familiar:** `SameValueMap` and `SameValueSet` extend the JavaScript's
-  built-in `Map` and `Set`
+- **Familiar:** `SameValueMap` and `SameValueSet` extend JavaScript's built-in
+  `Map` and `Set`
 - **Compliant:** maintains all the invariants of `Map` and `Set` including
   method return values and even iteration order!
 - **Tiny:** less than 350 bytes minzipped!
@@ -105,9 +105,13 @@ console.log(sameValueSet.has(-0))
 Stars are always welcome!
 
 For bugs and feature requests,
-[please create an issue](https://github.com/TomerAberbach/svkc/issues/new).
+[please create an issue](https://github.com/TomerAberbach/quetie/issues/new).
+
+For pull requests, please read the
+[contributing guidelines](https://github.com/TomerAberbach/quetie/blob/master/contributing.md).
 
 ## License
 
-[Apache License 2.0](https://github.com/TomerAberbach/svkc/blob/main/license) ©
-[Tomer Aberbach](https://github.com/TomerAberbach)
+[Apache 2.0](https://github.com/TomerAberbach/quetie/blob/master/license)
+
+This is not an official Google product.
