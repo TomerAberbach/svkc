@@ -15,7 +15,7 @@
 </div>
 
 <div align="center">
-  JavaScript's keyed collections (Map & Set) with [SameValue](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) semantics!
+  JavaScript's keyed collections (Map & Set) with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">SameValue</a> semantics!
 </div>
 
 ## Features
