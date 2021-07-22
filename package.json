@@ -7,7 +7,14 @@
     "url": "https://tomeraberba.ch"
   },
   "description": "JavaScript's keyed collections (Map & Set) with SameValue semantics!",
-  "keywords": [],
+  "keywords": [
+    "map",
+    "set",
+    "samevalue",
+    "zero",
+    "negative",
+    "samevaluezero"
+  ],
   "homepage": "https://github.com/TomerAberbach/svkc",
   "repository": "TomerAberbach/svkc",
   "bugs": {
