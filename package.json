@@ -1,0 +1,50 @@
+{
+  "name": "svkc",
+  "version": "0.0.0",
+  "author": {
+    "name": "Tomer Aberbach",
+    "email": "tomeraberbach@gmail.com",
+    "url": "https://tomeraberba.ch"
+  },
+  "description": "JavaScript's keyed collections (Map & Set) with SameValue semantics!",
+  "keywords": [],
+  "homepage": "https://github.com/TomerAberbach/svkc",
+  "repository": "TomerAberbach/svkc",
+  "bugs": {
+    "url": "https://github.com/TomerAberbach/svkc/issues"
+  },
+  "license": "Apache-2.0",
+  "files": [
+    "src/index.d.ts",
+    "dist"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">= 12.17"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not op_mini all"
+  ],
+  "exports": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./src/index.d.ts",
+  "scripts": {
+    "prepare": "tomer install",
+    "lint": "tomer lint -g",
+    "test": "tomer test",
+    "build": "tomer build src/index.js",
+    "prepublishOnly": "pnpm run build"
+  },
+  "terser": {
+    "keep_classnames": true
+  },
+  "devDependencies": {
+    "ava": "3.15.0",
+    "ava-fast-check": "4.0.2",
+    "fast-check": "2.17.0",
+    "tomer": "0.0.9",
+    "tsd": "0.17.0"
+  }
+}
