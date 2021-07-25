@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-const negativeZero = Symbol(`-0`)
+// Just needs to be some unique value
+const negativeZero = {}
 
 const encode = value => (Object.is(value, -0) ? negativeZero : value)
 const decode = value => (value === negativeZero ? -0 : value)
