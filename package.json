@@ -34,7 +34,10 @@
     "not IE 11",
     "not op_mini all"
   ],
-  "exports": "./dist/index.js",
+  "exports": {
+    "types": "./src/index.d.ts",
+    "default": "./dist/index.js"
+  },
   "module": "./dist/index.js",
   "types": "./src/index.d.ts",
   "scripts": {
