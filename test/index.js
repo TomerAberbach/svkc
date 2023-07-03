@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import test from 'ava'
-import { fc, testProp } from 'ava-fast-check'
+/* eslint-disable jest/no-standalone-expect */
+import { fc, testProp } from 'tomer'
 import { SameValueMap, SameValueSet } from '../src/index.js'
 import toCommands from './helpers/to-commands.js'
 
@@ -35,67 +35,67 @@ const {
   checkSameValueMapCommand,
   checkSameValueSetCommand,
 } = toCommands({
-  clear(t, model, real) {
+  clear: (model, real) => {
     real.clear()
     model.clear()
   },
-  delete(t, model, real, value) {
-    t.is(real.delete(value), model.delete(value))
+  delete: (model, real, value) => {
+    expect(real.delete(value)).toBe(model.delete(value))
   },
-  get(t, model, real, key) {
-    t.is(real.get(key), model.get(key))
+  get: (model, real, key) => {
+    expect(real.get(key)).toBe(model.get(key))
   },
-  has(t, model, real, value) {
-    t.is(real.has(value), model.has(value))
+  has: (model, real, value) => {
+    expect(real.has(value)).toBe(model.has(value))
   },
-  add(t, model, real, value) {
-    t.is(real.add(value), real)
+  add: (model, real, value) => {
+    expect(real.add(value)).toBe(real)
     model.add(value)
   },
-  set(t, model, real, [key, value]) {
-    t.is(real.set(key, value), real)
+  set: (model, real, [key, value]) => {
+    expect(real.set(key, value)).toBe(real)
     model.set(key, value)
   },
-  size(t, model, real) {
-    t.is(real.size, model.size)
+  size: (model, real) => {
+    expect(real.size).toBe(model.size)
   },
-  keys(t, model, real) {
+  keys: (model, real) => {
     const realKeys = real.keys()
     const modelKeys = model.keys()
 
-    t.deepEqual([...realKeys], [...modelKeys])
-    t.deepEqual([...realKeys], [...modelKeys])
+    expect([...realKeys]).toStrictEqual([...modelKeys])
+    expect([...realKeys]).toStrictEqual([...modelKeys])
   },
-  values(t, model, real) {
+  values: (model, real) => {
     const realValues = real.values()
     const modelValues = model.values()
 
-    t.deepEqual([...realValues], [...modelValues])
-    t.deepEqual([...realValues], [...modelValues])
+    expect([...realValues]).toStrictEqual([...modelValues])
+    expect([...realValues]).toStrictEqual([...modelValues])
   },
-  entries(t, model, real) {
+  entries: (model, real) => {
     const realEntries = real.entries()
     const modelEntries = model.entries()
 
-    t.deepEqual([...realEntries], [...modelEntries])
-    t.deepEqual([...realEntries], [...modelEntries])
+    expect([...realEntries]).toStrictEqual([...modelEntries])
+    expect([...realEntries]).toStrictEqual([...modelEntries])
   },
-  iterate(t, model, real) {
-    t.deepEqual([...real], [...model])
+  iterate: (model, real) => {
+    expect([...real]).toStrictEqual([...model])
   },
-  forEach(t, model, real) {
+  forEach: (model, real) => {
     const realArgs = []
     real.forEach((value, key, map) => {
       realArgs.push(value, key)
-      t.is(map, real)
+      expect(map).toBe(real)
     })
 
     const modelArgs = []
     model.forEach((value, key) => modelArgs.push(value, key))
 
-    t.deepEqual(realArgs, modelArgs)
+    expect(realArgs).toStrictEqual(modelArgs)
   },
-  checkSameValueMap(t, model, real) {
+  checkSameValueMap: (_, real) => {
     const previousIteration = [...real]
     const previousEntries = [...real.entries()]
     const previousKeys = [...real.keys()]
@@ -105,41 +105,38 @@ const {
     real.set(-0, `negative zero`)
     real.set(0, `zero`)
 
-    t.deepEqual(
-      [...real],
+    expect([...real]).toStrictEqual(
       previousIteration.concat([
         [-0, `negative zero`],
         [0, `zero`],
       ]),
     )
-    t.deepEqual(
-      [...real.entries()],
+    expect([...real.entries()]).toStrictEqual(
       previousEntries.concat([
         [-0, `negative zero`],
         [0, `zero`],
       ]),
     )
-    t.deepEqual([...real.keys()], previousKeys.concat([-0, 0]))
-    t.deepEqual(
-      [...real.values()],
+    expect([...real.keys()]).toStrictEqual(previousKeys.concat([-0, 0]))
+    expect([...real.values()]).toStrictEqual(
       previousValues.concat([`negative zero`, `zero`]),
     )
-    t.is(real.get(-0), `negative zero`)
-    t.is(real.get(0), `zero`)
-    t.true(real.has(-0))
-    t.true(real.has(0))
-    t.is(real.size, newSize)
+    expect(real.get(-0)).toBe(`negative zero`)
+    expect(real.get(0)).toBe(`zero`)
+    expect(real.has(-0)).toBeTrue()
+    expect(real.has(0)).toBeTrue()
+    expect(real.size).toBe(newSize)
 
     real.delete(0)
 
-    t.true(real.has(-0))
-    t.is(real.get(-0), `negative zero`)
-    t.false(real.has(0))
-    t.is(real.get(0), undefined)
+    expect(real.has(-0)).toBeTrue()
+    expect(real.get(-0)).toBe(`negative zero`)
+    expect(real.has(0)).toBeFalse()
+    expect(real.get(0)).toBeUndefined()
 
     real.delete(-0)
   },
-  checkSameValueSet(t, model, real) {
+  checkSameValueSet: (_, real) => {
     const previousIteration = [...real]
     const previousEntries = [...real.entries()]
     const previousKeys = [...real.keys()]
@@ -149,24 +146,23 @@ const {
     real.add(-0)
     real.add(0)
 
-    t.deepEqual([...real], previousIteration.concat([-0, 0]))
-    t.deepEqual(
-      [...real.entries()],
+    expect([...real]).toStrictEqual(previousIteration.concat([-0, 0]))
+    expect([...real.entries()]).toStrictEqual(
       previousEntries.concat([
         [-0, -0],
         [0, 0],
       ]),
     )
-    t.deepEqual([...real.keys()], previousKeys.concat([-0, 0]))
-    t.deepEqual([...real.values()], previousValues.concat([-0, 0]))
-    t.true(real.has(-0))
-    t.true(real.has(0))
-    t.is(real.size, newSize)
+    expect([...real.keys()]).toStrictEqual(previousKeys.concat([-0, 0]))
+    expect([...real.values()]).toStrictEqual(previousValues.concat([-0, 0]))
+    expect(real.has(-0)).toBeTrue()
+    expect(real.has(0)).toBeTrue()
+    expect(real.size).toBe(newSize)
 
     real.delete(0)
 
-    t.true(real.has(-0))
-    t.false(real.has(0))
+    expect(real.has(-0)).toBeTrue()
+    expect(real.has(0)).toBeFalse()
 
     real.delete(-0)
   },
@@ -203,25 +199,25 @@ testProp(
               fc.constant(forEachCommand()),
               fc.constant(checkSameValueMapCommand()),
             ],
-            { maxCommands: 10000 },
+            { maxCommands: 10_000 },
           ),
         )
       }),
   ],
-  (t, [entries, commands]) => {
+  ([entries, commands]) => {
     fc.modelRun(
       () => ({
-        model: { t, model: new Map(entries) },
+        model: new Map(entries),
         real: new SameValueMap(entries),
       }),
       commands,
     )
 
-    t.pass()
+    expect.pass()
   },
 )
 
-test(`SameValueMap concrete example`, t => {
+test(`SameValueMap concrete example`, () => {
   const map = new SameValueMap([
     [1, 2],
     [2, 3],
@@ -230,19 +226,16 @@ test(`SameValueMap concrete example`, t => {
     [20, 1],
   ])
 
-  t.true(map.has(-0))
-  t.is(map.get(-0), 1)
-  t.false(map.has(0))
-  t.deepEqual(
-    [...map],
-    [
-      [1, 2],
-      [2, 3],
-      [-0, 1],
-      [10, 3],
-      [20, 1],
-    ],
-  )
+  expect(map.has(-0)).toBeTrue()
+  expect(map.get(-0)).toBe(1)
+  expect(map.has(0)).toBeFalse()
+  expect([...map]).toStrictEqual([
+    [1, 2],
+    [2, 3],
+    [-0, 1],
+    [10, 3],
+    [20, 1],
+  ])
 })
 
 testProp(
@@ -275,28 +268,28 @@ testProp(
               fc.constant(forEachCommand()),
               fc.constant(checkSameValueSetCommand()),
             ],
-            { maxCommands: 10000 },
+            { maxCommands: 10_000 },
           ),
         )
       }),
   ],
-  (t, [values, commands]) => {
+  ([values, commands]) => {
     fc.modelRun(
       () => ({
-        model: { t, model: new Set(values) },
+        model: new Set(values),
         real: new SameValueSet(values),
       }),
       commands,
     )
 
-    t.pass()
+    expect.pass()
   },
 )
 
-test(`SameValueSet concrete example`, t => {
+test(`SameValueSet concrete example`, () => {
   const set = new SameValueSet([1, 2, -0, 10, 20])
 
-  t.true(set.has(-0))
-  t.false(set.has(0))
-  t.deepEqual([...set], [1, 2, -0, 10, 20])
+  expect(set.has(-0)).toBeTrue()
+  expect(set.has(0)).toBeFalse()
+  expect([...set]).toStrictEqual([1, 2, -0, 10, 20])
 })

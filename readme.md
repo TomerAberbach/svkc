@@ -9,8 +9,11 @@
   <a href="https://github.com/TomerAberbach/svkc/actions">
     <img src="https://github.com/TomerAberbach/svkc/workflows/CI/badge.svg" alt="CI" />
   </a>
-  <a href="https://bundlephobia.com/result?p=svkc">
-    <img src="https://badgen.net/bundlephobia/minzip/svkc" alt="minzip size" />
+  <a href="https://unpkg.com/svkc/dist/index.min.js">
+    <img src="http://img.badgesize.io/https://unpkg.com/svkc/dist/index.min.js?compression=gzip&label=gzip" alt="gzip size" />
+  </a>
+  <a href="https://unpkg.com/svkc/dist/index.min.js">
+    <img src="http://img.badgesize.io/https://unpkg.com/svkc/dist/index.min.js?compression=brotli&label=brotli" alt="brotli size" />
   </a>
 </div>
 
@@ -54,10 +57,10 @@ Just use like a normal `Map` or `Set`!
 import { SameValueMap, SameValueSet } from 'svkc'
 
 const sameValueMap = new SameValueMap()
-sameValueMap.set(1, 'one')
-sameValueMap.set(0, 'zero')
-sameValueMap.set(-0, 'negative zero')
-sameValueMap.set(-1, 'negative one')
+sameValueMap.set(1, `one`)
+sameValueMap.set(0, `zero`)
+sameValueMap.set(-0, `negative zero`)
+sameValueMap.set(-1, `negative one`)
 
 console.log(sameValueMap.get(0))
 //=> zero

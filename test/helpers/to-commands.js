@@ -13,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { fc } from 'ava-fast-check'
+import { fc } from 'tomer'
 
 const toCommands = description =>
   Object.fromEntries(
@@ -26,8 +25,8 @@ const toCommands = description =>
       return [
         `${name}Command`,
         (...args) => ({
-          check: ({ model }) => check(model, ...args),
-          run: ({ t, model }, real) => test(t, model, real, ...args),
+          check: model => check(model, ...args),
+          run: (model, real) => test(model, real, ...args),
           toString: () => `${name}(${args.map(fc.stringify).join(`, `)})`,
         }),
       ]
