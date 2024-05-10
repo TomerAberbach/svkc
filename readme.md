@@ -4,16 +4,16 @@
 
 <div align="center">
   <a href="https://npmjs.org/package/svkc">
-    <img src="https://badgen.now.sh/npm/v/svkc" alt="version" />
+    <img src="https://badgen.net/npm/v/svkc" alt="version" />
   </a>
   <a href="https://github.com/TomerAberbach/svkc/actions">
     <img src="https://github.com/TomerAberbach/svkc/workflows/CI/badge.svg" alt="CI" />
   </a>
-  <a href="https://unpkg.com/svkc/dist/index.js">
-    <img src="http://img.badgesize.io/https://unpkg.com/svkc/dist/index.js?compression=gzip&label=gzip" alt="gzip size" />
+  <a href="https://unpkg.com/svkc/dist/index.min.js">
+    <img src="https://deno.bundlejs.com/?q=svkc&badge" alt="gzip size" />
   </a>
-  <a href="https://unpkg.com/svkc/dist/index.js">
-    <img src="http://img.badgesize.io/https://unpkg.com/svkc/dist/index.js?compression=brotli&label=brotli" alt="brotli size" />
+  <a href="https://unpkg.com/svkc/dist/index.min.js">
+    <img src="https://deno.bundlejs.com/?q=svkc&config={%22compression%22:{%22type%22:%22brotli%22}}&badge" alt="brotli size" />
   </a>
 </div>
 
@@ -108,13 +108,13 @@ console.log(sameValueSet.has(-0))
 Stars are always welcome!
 
 For bugs and feature requests,
-[please create an issue](https://github.com/TomerAberbach/quetie/issues/new).
+[please create an issue](https://github.com/TomerAberbach/svkc/issues/new).
 
 For pull requests, please read the
-[contributing guidelines](https://github.com/TomerAberbach/quetie/blob/master/contributing.md).
+[contributing guidelines](https://github.com/TomerAberbach/svkc/blob/main/contributing.md).
 
 ## License
 
-[Apache 2.0](https://github.com/TomerAberbach/quetie/blob/master/license)
+[Apache License 2.0](https://github.com/TomerAberbach/svkc/blob/main/license)
 
 This is not an official Google product.
