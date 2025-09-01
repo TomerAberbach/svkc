@@ -1,21 +1,6 @@
-/**
- * Copyright 2021 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import { fc, test } from 'tomer'
-import { SameValueMap, SameValueSet } from '../src/index.js'
+import { fc, test } from '@fast-check/vitest'
+import { expect } from 'vitest'
+import { SameValueMap, SameValueSet } from './index.js'
 
 test.prop([
   fc
@@ -146,9 +131,11 @@ test.prop([
                 real: Map<unknown, unknown>,
               ) => {
                 const modelArgs: unknown[] = []
+                // eslint-disable-next-line unicorn/no-array-for-each
                 model.forEach((value, key) => modelArgs.push(value, key))
 
                 const realArgs: unknown[] = []
+                // eslint-disable-next-line unicorn/no-array-for-each
                 real.forEach((value, key, map) => {
                   realArgs.push(value, key)
                   expect(map).toBe(real)
@@ -337,9 +324,11 @@ test.prop([
               check: () => true,
               run: (model: Set<unknown>, real: Set<unknown>) => {
                 const modelArgs: unknown[] = []
+                // eslint-disable-next-line unicorn/no-array-for-each
                 model.forEach((value, key) => modelArgs.push(value, key))
 
                 const realArgs: unknown[] = []
+                // eslint-disable-next-line unicorn/no-array-for-each
                 real.forEach((value, key, map) => {
                   realArgs.push(value, key)
                   expect(map).toBe(real)
